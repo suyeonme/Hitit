@@ -16,8 +16,13 @@ const Wrapper = styled.div`
 
 const InnerWrapper = styled.div`
   display: flex;
-  // width: 50rem;
-  // width: 60rem;
+  flex-direction: row;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 `;
 
 function Movie() {

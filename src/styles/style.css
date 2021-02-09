@@ -6,6 +6,22 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+
+  @media (max-width: 992px) {
+    font-size: 56.25%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 50%;
+  }
+
+  @media (max-width: 320px) {
+    font-size: 43.75%;
+  }
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
@@ -19,4 +35,11 @@ img {
 h1,
 h2 {
   font-weight: 600;
+}
+
+h1,
+h2,
+h3 {
+  font-size: 1.7rem;
+  color: #7c7c7c;
 }

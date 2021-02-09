@@ -15,10 +15,10 @@ interface SearchProps {
 const SearchInput = styled.input`
   width: 100%;
   border: 1px solid #e5e5e5;
-  border-radius: 3px;
-  margin-top: 0.5rem;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
-  padding: 0.5rem 0.3rem;
+  padding: 0.7rem 0.5rem;
 
   &:focus {
     outline: none;
@@ -58,7 +58,7 @@ function Search({ title, placeholder, onClick }: SearchProps) {
   );
 
   return (
-    <Wrapper width={20}>
+    <Wrapper width={30}>
       <h1>{title}</h1>
       <SearchInput
         type="input"

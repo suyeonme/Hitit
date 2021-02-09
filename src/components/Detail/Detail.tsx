@@ -14,16 +14,19 @@ const Content = styled.div`
 
 const TextWrapper = styled.div`
   flex: 3;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 `;
 
 const MovieTitle = styled.h1`
-  font-size: 1.8rem;
-  color: #7c7c7c;
+  font-size: 2.5rem;
+
+  @media (max-width: 576px) {
+    font-size: 1.5rem;
+  }
 
   span {
     display: block;
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     margin-top: 0.7rem;
     font-weight: 400;
   }
@@ -32,9 +35,13 @@ const MovieTitle = styled.h1`
 const MovieDes = styled.p<{ top?: number; bottom?: number; fontSize?: number }>`
   line-height: 1.3;
   color: #939393;
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : '0.8')}rem;
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : '1.2')}rem;
   margin-top: ${({ top }) => (top ? top : 0)}rem;
   margin-bottom: ${({ bottom }) => (bottom ? bottom : 0)}rem;
+
+  @media (max-width: 576px) {
+    font-size: ${({ fontSize }) => (fontSize ? fontSize : '1')}rem;
+  }
 
   span {
     font-weight: 600;
@@ -44,15 +51,15 @@ const MovieDes = styled.p<{ top?: number; bottom?: number; fontSize?: number }>`
 
 const Img = styled.div`
   flex: 1.5;
-  height: 18rem;
+  height: 22rem;
 `;
 
 const Rating = styled.div`
   background-color: #52a846;
   border-radius: 50%;
   color: white;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +88,7 @@ function Detail({ id }: DetailProps) {
     } = data;
 
     return (
-      <Wrapper width={40}>
+      <Wrapper width={50}>
         {isLoading && <Placeholder>Loading...</Placeholder>}
         {error && <Placeholder>error!</Placeholder>}
         <Content>
@@ -96,7 +103,7 @@ function Detail({ id }: DetailProps) {
               </MovieTitle>
               <Rating>{imdbRating}</Rating>
             </Header>
-            <MovieDes top={2} fontSize={1} bottom={1}>
+            <MovieDes top={2} fontSize={1.35} bottom={1}>
               {Plot}
             </MovieDes>
             <MovieDes bottom={1}>

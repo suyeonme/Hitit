@@ -14,19 +14,19 @@ const Wrapper = styled.div`
 `;
 
 const Img = styled.div`
-  width: 2rem;
-  height: 3rem;
+  width: 4rem;
+  height: 5rem;
   margin-right: 1rem;
 `;
 
 const MainTitle = styled.h2`
-  font-size: 0.8rem;
-  margin-bottom: 0.3rem;
+  font-size: 1.4rem;
+  margin-bottom: 0.7rem;
 `;
 
-const SubTitle = styled.h3`
-  font-size: 0.7rem;
-  color: grey;
+const SubTitle = styled.h2`
+  font-size: 1rem;
+  font-weight: 400;
 `;
 
 interface MovieItemProps {
