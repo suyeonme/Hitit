@@ -3,7 +3,14 @@ import { MovieData } from 'types/types';
 
 const Wrapper = styled.div`
   display: flex;
+  align-items: center;
   margin-bottom: 1rem;
+  cursor: pointer;
+  padding: 0.4rem;
+
+  &:hover {
+    background-color: #f4f4f4;
+  }
 `;
 
 const Img = styled.div`
@@ -24,24 +31,23 @@ const SubTitle = styled.h3`
 
 interface MovieItemProps {
   lastItemRef?: any;
-  item: MovieData;
+  movie: MovieData;
+  onClick: (movie: MovieData) => void;
 }
 
-function MovieItem({ lastItemRef, item }: MovieItemProps) {
-  const { Poster, Title, Year } = item;
+function MovieItem({ lastItemRef, movie, onClick }: MovieItemProps) {
+  const { Poster, Title, Year } = movie;
 
   return (
-    <div>
-      <Wrapper ref={lastItemRef}>
-        <Img>
-          <img src={Poster} alt={Title + ' in ' + Year} />
-        </Img>
-        <div>
-          <MainTitle>{Title}</MainTitle>
-          <SubTitle>{Year}</SubTitle>
-        </div>
-      </Wrapper>
-    </div>
+    <Wrapper ref={lastItemRef} onClick={() => onClick(movie)}>
+      <Img>
+        <img src={Poster} alt={Title + ' in ' + Year} />
+      </Img>
+      <div>
+        <MainTitle>{Title}</MainTitle>
+        <SubTitle>{Year}</SubTitle>
+      </div>
+    </Wrapper>
   );
 }
 
