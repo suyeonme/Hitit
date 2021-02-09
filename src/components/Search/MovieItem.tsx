@@ -1,5 +1,7 @@
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { MovieData } from 'types/types';
+import { MovieContext } from 'context/movieContext';
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,17 +31,25 @@ const SubTitle = styled.h2`
   font-weight: 400;
 `;
 
+type lastItemRefType =
+  | ((instance: HTMLDivElement | null) => void)
+  | React.RefObject<HTMLDivElement>
+  | null
+  | undefined;
+
 interface MovieItemProps {
-  lastItemRef?: any;
+  lastItemRef?: lastItemRefType;
   movie: MovieData;
-  onClick: (movie: MovieData) => void;
 }
 
-function MovieItem({ lastItemRef, movie, onClick }: MovieItemProps) {
+function MovieItem({ lastItemRef, movie }: MovieItemProps) {
   const { Poster, Title, Year } = movie;
+  const { setSelectedMovie } = useContext(MovieContext);
+
+  const handleClick = (movie: MovieData): void => setSelectedMovie(movie);
 
   return (
-    <Wrapper ref={lastItemRef} onClick={() => onClick(movie)}>
+    <Wrapper ref={lastItemRef} onClick={() => handleClick(movie)}>
       <Img>
         <img src={Poster} alt={Title + ' in ' + Year} />
       </Img>

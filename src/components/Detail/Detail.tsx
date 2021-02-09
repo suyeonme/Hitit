@@ -1,6 +1,9 @@
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
 import { Wrapper, Placeholder } from 'styles/style';
 import useFetchDetail from 'hooks/useFetchDetail';
+import { MovieContext } from 'context/movieContext';
 
 const Header = styled.div`
   display: flex;
@@ -64,16 +67,14 @@ const Rating = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 1rem;
+  flex-shrink: 0;
 `;
 
-interface DetailProps {
-  id: string;
-}
+function Detail() {
+  const { selectedMovie } = useContext(MovieContext);
+  const { isLoading, error, data } = useFetchDetail(selectedMovie?.imdbID);
 
-function Detail({ id }: DetailProps) {
-  const { isLoading, error, data } = useFetchDetail(id);
-
-  if (data) {
+  if (selectedMovie && data) {
     const {
       Title,
       Year,
@@ -127,7 +128,7 @@ function Detail({ id }: DetailProps) {
       </Wrapper>
     );
   }
-  return <Wrapper width={40} />;
+  return null;
 }
 
 export default Detail;

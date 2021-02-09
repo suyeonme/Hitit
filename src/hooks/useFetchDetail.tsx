@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import { MovieDetailData } from 'types/types';
 
 const API_KEY: string | undefined = process.env.REACT_APP_API_KEY;
 const URL: string = `http://www.omdbapi.com/`;
@@ -7,7 +8,7 @@ const URL: string = `http://www.omdbapi.com/`;
 function useFetchDetail(imdbID: string) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [data, setData] = useState<any>();
+  const [data, setData] = useState<MovieDetailData>();
 
   const sendQuery = useCallback(async (id): Promise<any> => {
     try {

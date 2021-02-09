@@ -27,8 +27,6 @@ function useFetch(query: string, pageNum: number) {
           `${URL}?s=${query}&page=${pageNum}&apikey=${API_KEY}`
         );
         const data: MovieList = await res?.data?.Search;
-        console.log(data);
-
         if (data) {
           await setList(
             (prev: MovieList): MovieList => {

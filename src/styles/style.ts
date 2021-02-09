@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div<{ width: number }>`
   width: ${props => props.width}rem;
-  height: 30rem;
+  height: 35rem;
   overflow-y: scroll;
   padding: 1.5rem;
   margin: 0 1rem;
