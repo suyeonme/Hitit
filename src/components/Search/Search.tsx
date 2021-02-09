@@ -1,28 +1,36 @@
 import React, { useState, useCallback, useRef } from 'react';
 import styled from 'styled-components';
 
+import { Wrapper, Placeholder } from 'styles/style';
+import { MovieData } from 'types/types';
 import useFetch from 'hooks/useFetch';
+import MovieItem from 'components/Search/MovieItem';
 
 interface SearchProps {
   title: string;
   placeholder: string;
+  onClick: (movie: MovieData) => void;
 }
 
-const Wrapper = styled.div`
-  background-color: pink;
+const SearchInput = styled.input`
   width: 100%;
-  height: 10rem;
-  overflow-y: scroll;
+  border: 1px solid #eeeeee;
+  border-radius: 3px;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.3rem;
 `;
 
-function Search({ title, placeholder }: SearchProps) {
+function Search({ title, placeholder, onClick }: SearchProps) {
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const { isLoading, error, list, hasMore } = useFetch(query, page);
 
+  const isLastItem = (i: number) => list.length === i + 1;
+
   const observer = useRef<any>(null);
 
-  const lastBookElementRef = useCallback(
+  const lastItemRef = useCallback(
     node => {
       if (isLoading) return;
       if (observer.current) observer.current.disconnect();
@@ -46,33 +54,29 @@ function Search({ title, placeholder }: SearchProps) {
   );
 
   return (
-    <div>
+    <Wrapper>
+      <h1>{title}</h1>
+      <SearchInput
+        type="input"
+        value={query}
+        placeholder={placeholder}
+        onChange={handleChange}
+      />
+
       <div>
-        <h1>{title}</h1>
-        <input
-          type="input"
-          value={query}
-          onChange={handleChange}
-          placeholder={placeholder}
-        />
-      </div>
-      <Wrapper>
         {list &&
-          list.map((item, i) => {
-            if (list.length === i + 1) {
-              return (
-                <div key={i} ref={lastBookElementRef}>
-                  {item.Title}
-                </div>
-              );
-            } else {
-              return <div key={i}>{item.Title}</div>;
-            }
-          })}
-      </Wrapper>
-      <div>{isLoading && 'Loading...'}</div>
-      <div>{error && 'error'}</div>
-    </div>
+          list.map((item: MovieData, i: number) => (
+            <MovieItem
+              key={i}
+              item={item}
+              lastItemRef={isLastItem(i) ? lastItemRef : undefined}
+              // onClick={}
+            />
+          ))}
+      </div>
+      {isLoading && <Placeholder>Loading...</Placeholder>}
+      {error && <Placeholder>error!</Placeholder>}
+    </Wrapper>
   );
 }
 

@@ -27,6 +27,8 @@ function useFetch(query: string, pageNum: number) {
           }
         );
         const data: MovieList = await res?.data?.Search;
+        console.log(data);
+
         if (data) {
           await setList(
             (prev: MovieList): MovieList => {
