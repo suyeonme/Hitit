@@ -20,7 +20,7 @@ const TextWrapper = styled.div`
   padding: 0 1.5rem;
 `;
 
-const MovieTitle = styled.h1`
+export const MovieTitle = styled.h1`
   font-size: 2.5rem;
 
   @media (max-width: 576px) {

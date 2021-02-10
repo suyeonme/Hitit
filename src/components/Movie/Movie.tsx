@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import Search from 'components/Search/Search';
 import Detail from 'components/Detail/Detail';
 
+import { MovieTitle } from 'components/Detail/Detail';
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,9 +25,14 @@ const InnerWrapper = styled.div`
   }
 `;
 
+const Title = styled(MovieTitle)`
+  margin: 2rem 0;
+`;
+
 function Movie() {
   return (
     <Wrapper>
+      <Title>Hitit Frontend Assignment</Title>
       <InnerWrapper>
         <Search title="Search" placeholder="Search a movie" />
         <Detail />

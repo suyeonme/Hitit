@@ -4,7 +4,7 @@
 
 ### Preview
 
-![Screen Shot 2021-02-09 at 12 52 32 PM](https://user-images.githubusercontent.com/55128990/107313641-5108aa00-6ad6-11eb-9031-5579f87002be.png)
+![Screen Shot 2021-02-10 at 8 59 00 AM](https://user-images.githubusercontent.com/55128990/107444639-46095480-6b7e-11eb-90da-7df18528a90c.png)
 
 ### Features
 
